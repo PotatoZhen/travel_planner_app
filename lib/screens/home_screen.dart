@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:travel_planner_app/screens/create_trip_sheet.dart';
 import 'package:travel_planner_app/widgets/destination_card.dart';
+import 'package:travel_planner_app/widgets/title_text.dart';
+import 'package:travel_planner_app/widgets/trip_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -41,15 +44,8 @@ class HomeScreen extends StatelessWidget {
         
             children: [
               const SizedBox(height: 20),
-        
-              Text(
-                "Hello, WanZhen",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0D47A1)
-                ),
-              ),
+
+              TitleText(title: "Hello, WanZhen"),
         
               SizedBox(height: 8),
         
@@ -68,7 +64,34 @@ class HomeScreen extends StatelessWidget {
                 height: 50,
         
                 child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+
+                          builder: (context) {
+                            return Dialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                              ),
+                            
+                            backgroundColor: Color(0xFFF4F9FF),
+                            child:  Column(
+                              mainAxisSize: MainAxisSize.min,
+
+                              children: [
+
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0,18,0,0),
+                                  child: TitleText(title: "Create New Trip"),
+                                ),
+
+                                CreateTripSheet()
+
+                              ],
+                            )
+                            );
+                          });
+                    },
                     icon: Icon(Icons.add),
         
                   label: Text(
@@ -91,13 +114,8 @@ class HomeScreen extends StatelessWidget {
         
               SizedBox(height: 30),
         
-              Text(
-                "Upcoming Trips",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0D47A1)
-                ),
+              TitleText(
+                title: "Upcoming Trips",
               ),
         
               SizedBox(height: 15,),
@@ -147,16 +165,12 @@ class HomeScreen extends StatelessWidget {
 
               SizedBox(height: 120),
 
-              Text(
-                "Popular Destinations",
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Color(0xFF0D47A1),
-                  fontWeight: FontWeight.bold
-                ),
-              ),
+
+              TitleText(title: "Popular Destinations"),
 
               SizedBox(height: 20),
+
+              CreateTripSheet(),
 
               SizedBox(
                 height: 200,
