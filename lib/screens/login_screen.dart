@@ -53,6 +53,7 @@ class LoginScreen extends StatelessWidget {
 
 
               // Email
+              // TODO implement database to store email
               TextField(
                 decoration: InputDecoration(
                   hintText: "Email",
@@ -148,7 +149,9 @@ class LoginScreen extends StatelessWidget {
                   ),
 
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(

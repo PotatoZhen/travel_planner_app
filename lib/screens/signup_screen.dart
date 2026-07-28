@@ -56,6 +56,7 @@ class SignupScreen extends StatelessWidget {
 
 
                 // Name field
+                // TODO implement database to store username
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Full Name',
@@ -75,6 +76,7 @@ class SignupScreen extends StatelessWidget {
 
 
                 // Email field
+                // TODO implement database to store email
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -94,6 +96,7 @@ class SignupScreen extends StatelessWidget {
 
 
                 // Password field
+                // TODO implement database to store password
                 TextField(
                   obscureText: true,
 
@@ -166,10 +169,8 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
                   ],
                 ),
-
               ],
             ),
           ),
