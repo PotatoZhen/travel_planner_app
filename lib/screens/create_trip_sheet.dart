@@ -11,6 +11,11 @@ class CreateTripSheet extends StatefulWidget {
 }
 
 class _CreateTripSheetState extends State<CreateTripSheet> {
+
+  final TextEditingController selectedStartDate = TextEditingController();
+  final TextEditingController selectedEndDate = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -27,19 +32,48 @@ class _CreateTripSheetState extends State<CreateTripSheet> {
           icon: Icons.location_city
       ),
 
-          TripTextField(
-              label: "Start Date",
-              icon: Icons.calendar_month
-          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              readOnly: true,
+              onTap: () {pickDate(selectedStartDate);},
+              controller: selectedStartDate,
 
-          TripTextField(
-              label: "End Date",
-              icon: Icons.calendar_month
-          ),
+              decoration: InputDecoration(
+                    labelText: "Start Date",
+                    filled: true,
+                    fillColor: Colors.white,
 
-          TripTextField(
-              label: "Destination",
-              icon: Icons.location_city
+                    prefixIcon: Icon(Icons.calendar_month),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)
+                    )
+                  ),
+
+
+              ),
+            ),
+
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              readOnly: true,
+              onTap: () {pickDate(selectedEndDate);},
+              controller: selectedEndDate,
+
+              decoration: InputDecoration(
+                  labelText: "End Date",
+                  filled: true,
+                  fillColor: Colors.white,
+
+                  prefixIcon: Icon(Icons.calendar_month),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)
+                  )
+              ),
+
+            ),
           ),
 
           TripTextField(
@@ -52,7 +86,9 @@ class _CreateTripSheetState extends State<CreateTripSheet> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0,12,0,0),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF2196F3)
                   ),
@@ -73,4 +109,41 @@ class _CreateTripSheetState extends State<CreateTripSheet> {
 
 
   }
+  
+  Future<void> pickDate(
+      TextEditingController controller,
+      ) async {
+
+    DateTime? start = convertToDateTime(selectedStartDate);
+
+    DateTime? date = await showDatePicker(
+        context: context, 
+        initialDate: DateTime.now(),
+        firstDate:  DateTime.now(),
+        lastDate: DateTime(2030),
+    );
+    
+    if (date != null) {
+      setState(() {
+        controller.text = "${date.day}/${date.month}/${date.year}";
+      });
+    }
+  }
+
+  DateTime? convertToDateTime(TextEditingController controller) {
+
+    if (controller.text.isEmpty) {
+      return null;
+    }
+
+    List<String> parts = controller.text.split('/');
+
+    return DateTime(
+      int.parse(parts[2]), // year
+      int.parse(parts[1]), // month
+      int.parse(parts[0]), // day
+    );
+  }
+  
+  
 }
