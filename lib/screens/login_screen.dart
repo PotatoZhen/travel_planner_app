@@ -125,7 +125,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
 
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context,'/main');
+                  },
 
                   child: const Text(
                     "Login",

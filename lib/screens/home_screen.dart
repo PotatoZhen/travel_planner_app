@@ -212,29 +212,6 @@ class HomeScreen extends StatelessWidget {
         
         ),
       ),
-        
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-            
-            selectedItemColor: Color(0xFF2196F3),
-
-            items: [
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: "Home"
-              ),
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.map),
-                label: "Trips"
-              ),
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                label: "Profile"
-              ),
-            ]),
       
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF2196F3),
